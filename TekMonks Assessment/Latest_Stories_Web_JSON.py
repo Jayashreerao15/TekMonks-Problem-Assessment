@@ -14,7 +14,6 @@ class MyHandler(BaseHTTPRequestHandler):
                 html_content = res.read().decode('utf-8')
                 stories = []
 
-                # Using regular expressions to extract story titles and links
                 story_pattern = re.compile(r'<a href="(.*?)">.*?<h3 class="latest-stories__item-headline">(.*?)</h3>', re.DOTALL)
                 matches = re.findall(story_pattern, html_content)
 
@@ -24,11 +23,9 @@ class MyHandler(BaseHTTPRequestHandler):
                         "link": "https://time.com" + link
                     })
 
-                # Save the JSON data to a file
                 with open('Recent.json', 'w', encoding='utf-8') as json_file:
                     json.dump(stories, json_file, indent=6, ensure_ascii=False)
 
-                # Generate an HTML page with a beautiful UI
                 html_output = """
                 <!DOCTYPE html>
                 <html>
@@ -93,7 +90,6 @@ class MyHandler(BaseHTTPRequestHandler):
                 </html>
                 """
 
-                # Send HTML response
                 self.send_response(200)
                 self.send_header('Content-type', 'text/html')
                 # Add CORS headers to allow cross-origin requests
