@@ -87,7 +87,7 @@ html_output = """
 ```
   
 9. Adding Story Data to the HTML Page:
-    - The extracted story data is added to the HTML page within an unordered list (<ul>) as list items (<li>) with hyperlinks to the story links.
+    - The extracted story data is added to the HTML page within an unordered list [ul] as list items [li] with hyperlinks to the story links.
 ```python
 for story in stories:
     html_output += f'<li><a href="{story["link"]}" target="_blank">{story["title"]}</a></li>'
