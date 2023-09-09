@@ -14,7 +14,6 @@ class MyHandler(BaseHTTPRequestHandler):
                 html_content = res.read().decode('utf-8')
                 stories = []
 
-                # Using regular expressions to extract story titles and links
                 story_pattern = re.compile(r'<a href="(.*?)">.*?<h3 class="latest-stories__item-headline">(.*?)</h3>', re.DOTALL)
                 matches = re.findall(story_pattern, html_content)
 
@@ -24,7 +23,6 @@ class MyHandler(BaseHTTPRequestHandler):
                         "link": "https://time.com" + link
                     })
 
-                # Create an HTML page with styling and a background image
                 html_output = """
                 <!DOCTYPE html>
                 <html>
@@ -88,10 +86,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 </html>
                 """
 
-                # Send HTML response
                 self.send_response(200)
                 self.send_header('Content-type', 'text/html')
-                # Add CORS headers to allow cross-origin requests
                 self.send_header('Access-Control-Allow-Origin', '*')
                 self.end_headers()
                 self.wfile.write(html_output.encode('utf-8'))
